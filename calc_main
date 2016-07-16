@@ -1,0 +1,10 @@
+
+public class calc_main extends calc_ui{
+
+	public static void main(String[] args) {
+		calc_ui n = new calc_ui();
+		n.ui();
+
+	}
+
+}
