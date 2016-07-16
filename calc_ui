@@ -1,0 +1,255 @@
+import java.awt.FlowLayout;
+import javax.swing.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Dimension;
+import java.awt.Font;
+
+
+public class calc_ui implements ActionListener{
+	JFrame frame = new JFrame("Moore");
+	JPanel panel = new JPanel(new FlowLayout());
+	JTextArea text = new JTextArea(1,20);
+	JButton button1 = new JButton("1");
+	JButton button2 = new JButton("2");
+	JButton button3 = new JButton("3");
+	JButton button4 = new JButton("4");
+	JButton button5 = new JButton("5");
+	JButton button6 = new JButton("6");
+	JButton button7 = new JButton("7");
+	JButton button8 = new JButton("8");
+	JButton button9 = new JButton("9");
+	JButton button0 = new JButton("0");
+	JButton buttonadd = new JButton("+");
+	JButton buttonsub = new JButton("-");
+	JButton buttonmult= new JButton("*");
+	JButton buttondiv = new JButton("/");
+	JButton buttoneq = new JButton("=");
+	JButton buttonclr = new JButton("C");
+	
+	
+	Double number1, number2, result;
+	int addc=0, subc=0,  multic=0, divc=0;
+	
+	
+
+public void ui(){
+	frame.setVisible(true);
+	frame.setSize(350, 450);
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame.add(panel);
+	panel.add(text);
+	panel.add(button1);
+	panel.add(button2);
+	panel.add(button3);
+	panel.add(buttonadd);
+	panel.add(button4);
+	panel.add(button5);
+	panel.add(button6);
+	panel.add(buttonsub);
+	panel.add(button7);
+	panel.add(button8);
+	panel.add(button9);
+	panel.add(buttonmult);
+	panel.add(button0);
+	panel.add(buttonclr);
+	panel.add(buttoneq);
+	panel.add(buttondiv);
+	
+	Font f = new Font("Arial", Font.PLAIN, 40);
+	Dimension d = new Dimension(75, 75);
+	text.setPreferredSize( new Dimension(325, 50 ) );
+	text.setFont(new Font ("Arial", Font.PLAIN, 20));
+	button1.addActionListener(this);
+	button1.setPreferredSize(d);
+	button1.setFont(f);
+	button2.addActionListener(this);
+	button2.setPreferredSize(d);
+	button2.setFont(f);
+	button3.addActionListener(this);
+	button3.setPreferredSize(d);
+	button3.setFont(f);
+	button4.addActionListener(this);
+	button4.setPreferredSize(d);
+	button4.setFont(f);
+	button5.addActionListener(this);
+	button5.setPreferredSize(d);
+	button5.setFont(f);
+	button6.addActionListener(this);
+	button6.setPreferredSize(d);
+	button6.setFont(f);
+	button7.addActionListener(this);
+	button7.setPreferredSize(d);
+	button7.setFont(f);
+	button8.addActionListener(this);
+	button8.setPreferredSize(d);
+	button8.setFont(f);
+	button9.addActionListener(this);
+	button9.setPreferredSize(d);
+	button9.setFont(f);
+	button0.addActionListener(this);
+	button0.setPreferredSize(d);
+	button0.setFont(f);
+	buttonadd.addActionListener(this);
+	buttonadd.setPreferredSize(d);
+	buttonadd.setFont(f);
+	buttonsub.addActionListener(this);
+	buttonsub.setPreferredSize(d);
+	buttonsub.setFont(f);
+	buttonmult.addActionListener(this);
+	buttonmult.setPreferredSize(d);
+	buttonmult.setFont(f);
+	buttondiv.addActionListener(this);
+	buttondiv.setPreferredSize(d);
+	buttondiv.setFont(f);
+	buttoneq.addActionListener(this);
+	buttoneq.setPreferredSize(d);
+	buttoneq.setFont(f);
+	buttonclr.addActionListener(this);
+	buttonclr.setPreferredSize(d);
+	buttonclr.setFont(f);
+	
+	
+}
+
+
+@Override
+public void actionPerformed(ActionEvent e) {
+ Object source = e.getSource();
+ 
+  if(source==buttonclr)
+  {
+	  number1=0.0;
+      number2=0.0;
+      text.setText("");
+  }
+  if(source==button1)
+  {
+	  text.append("1");
+  }
+  if(source==button2)
+  {
+	  text.append("2");
+  }
+  if(source==button3)
+  {
+	  text.append("3");
+  }
+  if(source==button4)
+  {
+	  text.append("4");
+  }
+  if(source==button5)
+  {
+	  text.append("5");
+  }
+  if(source==button6)
+  {
+	  text.append("6");
+  }
+  if(source==button7)
+  {
+	  text.append("7");
+  }
+  if(source==button8)
+  {
+	  text.append("8");
+  }
+  if(source==button9)
+  {
+	  text.append("9");
+  }
+  if(source==button0)
+  {
+	  text.append("0");
+  }
+  
+  
+	if(source==buttonadd)
+	{
+		number1=number_reader();
+		text.setText("");
+		addc=1;
+		subc=0;
+		multic=0;
+		divc=0;
+	}
+	if(source==buttonsub)
+	{
+		number1=number_reader();
+		text.setText("");
+		addc=0;
+		subc=1;
+		multic=0;
+		divc=0;
+	}
+	if(source==buttonmult)
+	{
+		number1=number_reader();
+		text.setText("");
+		addc=0;
+		subc=0;
+		multic=1;
+		divc=0;
+	}
+	if(source==buttondiv)
+	{
+		number1=number_reader();
+		text.setText("");
+		addc=0;
+		subc=0;
+		multic=0;
+		divc=1;
+	}
+	
+	if(source==buttoneq)
+	{
+		number2=number_reader();
+		if(addc>0)
+		{
+			result=number1+number2;
+			text.setText(Double.toString(result));
+			
+		}
+		if(subc>0)
+		{
+			result=number1-number2;
+			text.setText(Double.toString(result));
+			
+		}
+		if(multic>0)
+		{
+			result=number1*number2;
+			text.setText(Double.toString(result));
+			
+		}
+		if(divc>0)
+		{
+			result=number1/number2;
+			text.setText(Double.toString(result));
+			
+		}
+	}
+	
+	
+	
+}
+public double number_reader()
+	{Double num1;
+	String s;
+	s=text.getText();
+	num1=Double.valueOf(s);
+	return num1;
+
+	
+}
+
+
+}
+
+
+
+
+
+
+
